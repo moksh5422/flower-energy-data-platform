@@ -8,7 +8,7 @@ def run():
     metrics = validate(src)
 
     bronze = src.copy()
-    bronze["ingested_at"] = pd.Timestamp.utcnow()
+    bronze["ingested_at"] = pd.Timestamp.now(tz="UTC")
     bronze.to_parquet(BRONZE/"energy_observations.parquet", index=False)
 
     silver = bronze.sort_values(["asset_id","timestamp"]).drop_duplicates(
