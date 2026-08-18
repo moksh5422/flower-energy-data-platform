@@ -32,139 +32,138 @@ The main engineering focus is the data platform. Machine learning is treated as 
 
 ```text
 
-&#x20;                        ENERGY DATA SOURCES
+                        ENERGY DATA SOURCES
 
-&#x20;                                 │
+                                 │
 
-&#x20;            ┌────────────────────┼────────────────────┐
+            ┌────────────────────┼────────────────────┐
 
-&#x20;            │                    │                    │
+            │                    │                    │
 
-&#x20;       Asset Telemetry      Weather Forecasts    Market / Grid
+       Asset Telemetry      Weather Forecasts    Market / Grid
 
-&#x20;            │                    │                    │
+            │                    │                    │
 
-&#x20;            └────────────────────┼────────────────────┘
+            └────────────────────┼────────────────────┘
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                        DATA INGESTION LAYER
+                        DATA INGESTION LAYER
 
-&#x20;                                 │
+                                 │
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                             RAW DATA
+                             RAW DATA
 
-&#x20;                                 │
+                                 │
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                            BRONZE LAYER
+                            BRONZE LAYER
 
-&#x20;                   Raw / standardized telemetry
+                   Raw / standardized telemetry
 
-&#x20;                                 │
+                                 │
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                            SILVER LAYER
+                            SILVER LAYER
 
-&#x20;                Cleaned + validated analytical data
+                Cleaned + validated analytical data
 
-&#x20;                                 │
+                                 │
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                      FEATURE ENGINEERING
+                      FEATURE ENGINEERING
 
-&#x20;         ┌───────────────────────┼───────────────────────┐
+         ┌───────────────────────┼───────────────────────┐
 
-&#x20;         │                       │                       │
+         │                       │                       │
 
-&#x20;    Historical              Weather                 Market
+    Historical              Weather                 Market
 
-&#x20;      Lags                  Features                Features
+      Lags                  Features                Features
 
-&#x20;         │                       │                       │
+         │                       │                       │
 
-&#x20;         └───────────────────────┼───────────────────────┘
+         └───────────────────────┼───────────────────────┘
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                        ML TRAINING DATASET
+                        ML TRAINING DATASET
 
-&#x20;                                 │
+                                 │
 
-&#x20;                ┌────────────────┴────────────────┐
+                ┌────────────────┴────────────────┐
 
-&#x20;                │                                 │
+                │                                 │
 
-&#x20;                ▼                                 ▼
+                ▼                                 ▼
 
-&#x20;         XGBoost Forecasting              Physics Model
+         XGBoost Forecasting              Physics Model
 
-&#x20;                │                                 │
+                │                                 │
 
-&#x20;                └────────────────┬────────────────┘
+                └────────────────┬────────────────┘
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                        Hybrid / Residual ML
+                        Hybrid / Residual ML
 
-&#x20;                                 │
+                                 │
 
-&#x20;                                 ▼
+                                 ▼
 
-&#x20;                        MODEL EVALUATION
+                        MODEL EVALUATION
 
-&#x20;                                 │
+                                 │
 
-&#x20;                 ┌───────────────┼────────────────┐
+                 ┌───────────────┼────────────────┐
 
-&#x20;                 │               │                │
+                 │               │                │
 
-&#x20;                MAE             RMSE             Bias
+                MAE             RMSE             Bias
 
-&#x20;                 │               │                │
+                 │               │                │
 
-&#x20;                 └───────────────┼────────────────┘
+                 └───────────────┼────────────────┘
 
-&#x20;                                 ▼
+                                 ▼
+                   UNCERTAINTY / CALIBRATION
 
-&#x20;                   UNCERTAINTY / CALIBRATION
+                                 │
 
-&#x20;                                 │
+                          P10 / P50 / P90
 
-&#x20;                          P10 / P50 / P90
+                                 │
 
-&#x20;                                 │
+                                 ▼
 
-&#x20;                                 ▼
+                        RISK CLASSIFICATION
 
-&#x20;                        RISK CLASSIFICATION
+                                 │
 
-&#x20;                                 │
+                                 ▼
+          
+                             GOLD LAYER
 
-&#x20;                                 ▼
+                                 │
 
-&#x20;                           GOLD LAYER
+           ┌─────────────────────┼─────────────────────┐
 
-&#x20;                                 │
+           │                     │                     │
 
-&#x20;           ┌─────────────────────┼─────────────────────┐
+      Forecast Data        Evaluation Data       Risk Outputs
 
-&#x20;           │                     │                     │
+           │                     │                     │
 
-&#x20;      Forecast Data        Evaluation Data       Risk Outputs
+           └─────────────────────┼─────────────────────┘
 
-&#x20;           │                     │                     │
+                                 ▼
 
-&#x20;           └─────────────────────┼─────────────────────┘
-
-&#x20;                                 ▼
-
-&#x20;                      BI / OPERATIONS / APIs
+                      BI / OPERATIONS / APIs
 
 ```
 
@@ -232,67 +231,67 @@ The platform follows a layered data architecture.
 
 ```text
 
-&#x20;                   ┌───────────────┐
+                    ┌───────────────┐
 
-&#x20;                   │   RAW INPUT   │
+                    │   RAW INPUT   │
 
-&#x20;                   └───────┬───────┘
+                    └───────┬───────┘
 
-&#x20;                           │
+                            │
 
-&#x20;                           ▼
+                            ▼
 
-&#x20;                   ┌───────────────┐
+                    ┌───────────────┐
 
-&#x20;                   │    BRONZE     │
+                    │    BRONZE     │
 
-&#x20;                   │ Raw telemetry │
+                    │ Raw telemetry │
 
-&#x20;                   └───────┬───────┘
+                    └───────┬───────┘
 
-&#x20;                           │
+                            │
 
-&#x20;                      validation
+                       validation
 
-&#x20;                           │
+                            │
 
-&#x20;                           ▼
+                            ▼
 
-&#x20;                   ┌───────────────┐
+                    ┌───────────────┐
 
-&#x20;                   │    SILVER     │
+                    │    SILVER     │
 
-&#x20;                   │ Cleaned data  │
+                    │ Cleaned data  │
 
-&#x20;                   └───────┬───────┘
+                    └───────┬───────┘
 
-&#x20;                           │
+                            │
 
-&#x20;                  transformations
+                   transformations
 
-&#x20;                           │
+                            │
 
-&#x20;                           ▼
+                            ▼
 
-&#x20;                   ┌───────────────┐
+                    ┌───────────────┐
 
-&#x20;                   │  FEATURES     │
+                    │  FEATURES     │
 
-&#x20;                   │ ML-ready data │
+                    │ ML-ready data │
 
-&#x20;                   └───────┬───────┘
+                    └───────┬───────┘
 
-&#x20;                           │
+                            │
 
-&#x20;                           ▼
+                            ▼
 
-&#x20;                   ┌───────────────┐
+                    ┌───────────────┐
 
-&#x20;                   │     GOLD      │
+                    │     GOLD      │
 
-&#x20;                   │ Data products │
+                    │ Data products │
 
-&#x20;                   └───────────────┘
+                    └───────────────┘
 
 ```
 
@@ -340,39 +339,39 @@ The telemetry model is centered around asset-level time-series observations.
 
 ```text
 
-&#x20;                ASSET
+                 ASSET
 
-&#x20;                  │
+                   │
 
-&#x20;                  │ asset\_id
+                   │ asset\_id
 
-&#x20;                  ▼
+                   ▼
 
-&#x20;             TELEMETRY
+              TELEMETRY
 
-&#x20;                  │
+                   │
 
-&#x20;       ┌──────────┼──────────┐
+        ┌──────────┼──────────┐
 
-&#x20;       │          │          │
+        │          │          │
 
-&#x20;     Power     Weather     Market
+      Power     Weather     Market
 
-&#x20;       │          │          │
+        │          │          │
 
-&#x20;       └──────────┼──────────┘
+        └──────────┼──────────┘
 
-&#x20;                  │
+                   │
 
-&#x20;                  ▼
+                   ▼
 
-&#x20;            FEATURE DATASET
+             FEATURE DATASET
 
-&#x20;                  │
+                   │
 
-&#x20;                  ▼
+                   ▼
 
-&#x20;            MODEL OUTPUT
+             MODEL OUTPUT
 
 ```
 
@@ -522,27 +521,27 @@ The initial combined forecasting model was useful as a baseline, but the project
 
 ```text
 
-&#x20;                    ENERGY DATA
+                     ENERGY DATA
 
-&#x20;                         │
+                          │
 
-&#x20;            ┌────────────┼────────────┐
+             ┌────────────┼────────────┐
 
-&#x20;            ▼            ▼            ▼
+             ▼            ▼            ▼
 
-&#x20;          SOLAR         WIND       BATTERY
+           SOLAR         WIND       BATTERY
 
-&#x20;            │            │            │
+             │            │            │
 
-&#x20;            ▼            ▼            ▼
+             ▼            ▼            ▼
 
-&#x20;         XGBoost       XGBoost      XGBoost
+          XGBoost       XGBoost      XGBoost
 
-&#x20;            │            │            │
+             │            │            │
 
-&#x20;            ▼            ▼            ▼
+             ▼            ▼            ▼
 
-&#x20;       Forecast       Forecast     Forecast
+        Forecast       Forecast     Forecast
 
 ```
 
@@ -684,33 +683,33 @@ A simplified turbine power curve was introduced to provide domain knowledge.
 
 Wind Speed
 
-&#x20;   │
+    │
 
-&#x20;   ▼
+    ▼
 
 Cut-in Speed
 
-&#x20;   │
+    │
 
-&#x20;   ▼
+    ▼
 
 Cubic Power Region
 
-&#x20;   │
+    │
 
-&#x20;   ▼
+    ▼
 
 Rated Power
 
-&#x20;   │
+    │
 
-&#x20;   ▼
+    ▼
 
 Cut-out Speed
 
-&#x20;   │
+    │
 
-&#x20;   ▼
+    ▼
 
 Physics Forecast
 
@@ -726,29 +725,29 @@ Hybrid architecture:
 
 Weather Forecast
 
-&#x20;     │
+      │
 
-&#x20;     ├──────────────► Physics Model
+      ├──────────────► Physics Model
 
-&#x20;     │                      │
+      │                      │
 
-&#x20;     │                      ▼
+      │                      ▼
 
-&#x20;     │               Physics Forecast
+      │               Physics Forecast
 
-&#x20;     │                      │
+      │                      │
 
-&#x20;     └──────────────┐       │
+      └──────────────┐       │
 
-&#x20;                    ▼       ▼
+                     ▼       ▼
 
-&#x20;                 ML Model
+                  ML Model
 
-&#x20;                    │
+                     │
 
-&#x20;                    ▼
+                     ▼
 
-&#x20;              Final Forecast
+               Final Forecast
 
 ```
 
@@ -960,49 +959,49 @@ Forecast uncertainty is converted into operational risk categories.
 
 Forecast
 
-&#x20;  │
+   │
 
-&#x20;  ▼
+   ▼
 
 Uncertainty
 
-&#x20;  │
+   │
 
-&#x20;  ▼
+   ▼
 
 Risk Classification
 
-&#x20;  │
+   │
 
-&#x20;  ├── NORMAL
+   ├── NORMAL
 
-&#x20;  │       ↓
+   │       ↓
 
-&#x20;  │   NORMAL\_DISPATCH
+   │   NORMAL\_DISPATCH
 
-&#x20;  │
+   │
 
-&#x20;  ├── MEDIUM\_CONFIDENCE
+   ├── MEDIUM\_CONFIDENCE
 
-&#x20;  │       ↓
+   │       ↓
 
-&#x20;  │   MONITOR
+   │   MONITOR
 
-&#x20;  │
+   │
 
-&#x20;  ├── HIGH\_LOW\_GENERATION\_RISK
+   ├── HIGH\_LOW\_GENERATION\_RISK
 
-&#x20;  │       ↓
+   │       ↓
 
-&#x20;  │   PREPARE\_RESERVE
+   │   PREPARE\_RESERVE
 
-&#x20;  │
+   │
 
-&#x20;  └── CRITICAL\_LOW\_GENERATION
+   └── CRITICAL\_LOW\_GENERATION
 
-&#x20;          ↓
+           ↓
 
-&#x20;      ACTIVATE\_RESERVE
+       ACTIVATE\_RESERVE
 
 ```
 
@@ -1376,47 +1375,47 @@ The primary workflow is:
 
 Source Data
 
-&#x20;   ↓
+    ↓
 
 Ingestion
 
-&#x20;   ↓
+    ↓
 
 Storage
 
-&#x20;   ↓
+    ↓
 
 Data Validation
 
-&#x20;   ↓
+    ↓
 
 Transformation
 
-&#x20;   ↓
+    ↓
 
 Feature Engineering
 
-&#x20;   ↓
+    ↓
 
 Curated Data
 
-&#x20;   ↓
+    ↓
 
 ML Training
 
-&#x20;   ↓
+    ↓
 
 Predictions
 
-&#x20;   ↓
+    ↓
 
 Evaluation
 
-&#x20;   ↓
+    ↓
 
 Monitoring
 
-&#x20;   ↓
+    ↓
 
 Operational Data Products
 
@@ -1464,81 +1463,81 @@ The current implementation is intentionally local and reproducible. The same log
 
 ```text
 
-&#x20;                 DATA SOURCES
+                  DATA SOURCES
 
-&#x20;                      │
+                       │
 
-&#x20;                      ▼
+                       ▼
 
-&#x20;               Azure Data Factory
+                Azure Data Factory
 
-&#x20;                      │
+                       │
 
-&#x20;                      ▼
+                       ▼
 
-&#x20;                ADLS Gen2
+                 ADLS Gen2
 
-&#x20;                      │
+                       │
 
-&#x20;                      ▼
+                       ▼
 
-&#x20;                BRONZE / DELTA
+                 BRONZE / DELTA
 
-&#x20;                      │
+                       │
 
-&#x20;                      ▼
+                       ▼
 
-&#x20;            Microsoft Fabric / Spark
+             Microsoft Fabric / Spark
 
-&#x20;                      │
+                       │
 
-&#x20;                      ▼
+                       ▼
 
-&#x20;                SILVER / DELTA
+                 SILVER / DELTA
 
-&#x20;                      │
+                       │
 
-&#x20;                      ▼
+                       ▼
 
-&#x20;            Feature Engineering
+             Feature Engineering
 
-&#x20;                      │
+                       │
 
-&#x20;            ┌─────────┴─────────┐
+             ┌─────────┴─────────┐
 
-&#x20;            ▼                   ▼
+             ▼                   ▼
 
-&#x20;       ML Features         BI Features
+        ML Features         BI Features
 
-&#x20;            │                   │
+             │                   │
 
-&#x20;            ▼                   ▼
+             ▼                   ▼
 
-&#x20;        Azure ML             Power BI
+         Azure ML             Power BI
 
-&#x20;            │
+             │
 
-&#x20;            ▼
+             ▼
 
-&#x20;     Forecasting Models
+      Forecasting Models
 
-&#x20;            │
+             │
 
-&#x20;            ▼
+             ▼
 
-&#x20;     Model Evaluation
+      Model Evaluation
 
-&#x20;            │
+             │
 
-&#x20;            ▼
+             ▼
 
-&#x20;     Uncertainty / Risk
+      Uncertainty / Risk
 
-&#x20;            │
+             │
 
-&#x20;            ▼
+             ▼
 
-&#x20;           GOLD
+            GOLD
 
 ```
 
@@ -1656,27 +1655,27 @@ The project therefore evolved from a simple forecasting model into a broader pla
 
 Reliable Data
 
-&#x20;     ↓
+      ↓
 
 Good Data Engineering
 
-&#x20;     ↓
+      ↓
 
 Meaningful Features
 
-&#x20;     ↓
+      ↓
 
 Responsible ML
 
-&#x20;     ↓
+      ↓
 
 Forecast Monitoring
 
-&#x20;     ↓
+      ↓
 
 Risk-Aware Outputs
 
-&#x20;     ↓
+      ↓
 
 Operational Decisions
 
